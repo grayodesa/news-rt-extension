@@ -10,8 +10,13 @@
     "host_permissions": [
         "https://news.radio-t.com/*"
     ],
+    "icons": {
+        "32": "favicon-32x32.png"
+    },
     "action": {
-
+        "default_icon": {
+            "32": "favicon-32x32.png"
+        }
     },
     "background": {
         "service_worker": "background.js"

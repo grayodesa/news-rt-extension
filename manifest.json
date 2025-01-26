@@ -4,7 +4,8 @@
     "version": "1.0",
     "description": "Save articles to news service",
     "permissions": [
-        "activeTab"
+        "activeTab",
+        "storage"
     ],
     "host_permissions": [
         "https://news.radio-t.com/*"
@@ -18,5 +19,6 @@
     "content_scripts": [{
         "matches": ["<all_urls>"],
         "js": ["readability.js", "content.js"]
-    }]
+    }],
+    "options_page": "options.html"
 }

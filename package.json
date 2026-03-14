@@ -1,0 +1,26 @@
+{
+  "name": "news-rt-extension",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "esbuild src/content.js --bundle --outfile=dist/content.js --format=iife",
+    "watch": "esbuild src/content.js --bundle --outfile=dist/content.js --format=iife --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grayodesa/news-rt-extension.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grayodesa/news-rt-extension/issues"
+  },
+  "homepage": "https://github.com/grayodesa/news-rt-extension#readme",
+  "dependencies": {
+    "defuddle": "^0.13.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.4"
+  }
+}

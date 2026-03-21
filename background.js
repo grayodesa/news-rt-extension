@@ -15,17 +15,25 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
             const auth = btoa(`${credentials.username}:${credentials.password}`);
 
+            const payload = JSON.stringify(request.data);
+            console.log('Payload size:', payload.length, 'bytes');
+            console.log('Payload fields:', Object.fromEntries(
+                Object.entries(request.data).map(([k, v]) => [k, typeof v === 'string' ? `${v.substring(0, 200)} (${v.length} chars)` : v])
+            ));
+
             fetch('https://news.radio-t.com/api/v1/news/manual', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Basic ${auth}`
                 },
-                body: JSON.stringify(request.data)
+                body: payload
             })
-            .then(response => {
+            .then(async response => {
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
+                    const body = await response.text();
+                    console.error('Server response:', response.status, body);
+                    throw new Error(`HTTP ${response.status}: ${body}`);
                 }
                 sendResponse({success: true});
             })

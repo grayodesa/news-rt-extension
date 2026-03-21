@@ -1,5 +1,12 @@
 import Defuddle from 'defuddle';
 
+function normalizeDate(dateStr) {
+    if (!dateStr) return new Date().toISOString();
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return new Date().toISOString();
+    return date.toISOString();
+}
+
 function extractPageMetadata() {
     const result = new Defuddle(document).parse();
     const title = result.title || document.title || '';
@@ -15,7 +22,7 @@ function extractPageMetadata() {
         content: result.content || '',
         link: window.location.href,
         origlink: window.location.href,
-        ts: result.published || new Date().toISOString(),
+        ts: normalizeDate(result.published),
         geek: false,
         position: -1
     };
